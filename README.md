@@ -1,3 +1,3 @@
 # momentz
 
-A new Flutter project.
+A photo sharing social media app.
