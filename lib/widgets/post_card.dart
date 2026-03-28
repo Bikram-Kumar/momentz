@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:momentz/models/user.dart' as model;
 import 'package:momentz/providers/user_provider.dart';
 import 'package:momentz/resources/firestore_methods.dart';
 import 'package:momentz/screens/comments_screen.dart';
+import 'package:momentz/screens/profile_screen.dart';
 import 'package:momentz/utils/colors.dart';
 import 'package:momentz/utils/global_variable.dart';
 import 'package:momentz/utils/utils.dart';
@@ -95,17 +97,30 @@ class _PostCardState extends State<PostCard> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                      left: 8,
+                      left: 4,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          widget.snap['username'].toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                        TextButton(
+                          child: Text(
+                            widget.snap['username'].toString(),
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: primaryColor
+                            ),
                           ),
+                    
+                          onPressed: () { 
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ProfileScreen(uid: widget.snap['uid'])
+                              )
+                            );
+                           },
+
                         ),
                       ],
                     ),

@@ -20,7 +20,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   bool isLoading = false;
   final TextEditingController _descriptionController = TextEditingController();
 
-  _selectImage(BuildContext parentContext) async {
+  dynamic _selectImage(BuildContext parentContext) async {
     return showDialog(
       context: parentContext,
       builder: (BuildContext context) {
@@ -119,11 +119,17 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
     return _file == null
         ? Center(
-            child: IconButton(
-              icon: const Icon(
-                Icons.upload,
-              ),
-              onPressed: () => _selectImage(context),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.upload,
+                  ),
+                  onPressed: () => _selectImage(context),
+                ),
+                Text("Create a Post")
+              ],
             ),
           )
         : Scaffold(
